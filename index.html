@@ -1,0 +1,225 @@
+﻿cd $env:USERPROFILE\Desktop
+$path = "index.html"
+
+$html = @"
+<!DOCTYPE html>
+<html lang='ja'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>履歴書 - 野口 慧</title>
+<style>
+  body {
+    font-family: 'Yu Gothic', sans-serif;
+    margin:0;
+    background:#f5f5f5;
+  }
+  .container {
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items:flex-start;
+    padding:20px;
+    gap:20px;
+    max-width:1200px;
+    margin:0 auto;
+  }
+  .left {
+    flex: 0 0 350px;
+    background:#fff;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:15px;
+  }
+  .right {
+    flex: 1;
+    background:#fff;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+  }
+  .photo-container {
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    overflow:hidden;
+    background:#ddd;
+    position:relative;
+  }
+  .photo-container img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .photo-overlay {
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.3);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    font-size:0.9em;
+    cursor:pointer;
+    transition:opacity 0.2s;
+  }
+  .photo-container:hover .photo-overlay {
+    opacity:1;
+  }
+  h1 { margin:0; font-size:1.5em; text-align:center; }
+  h2 { margin:10px 0 5px 0; font-size:1.2em; }
+  p { margin:3px 0; }
+  textarea {
+    width:100%;
+    min-height:120px;
+    font-size:1em;
+    margin-bottom:10px;
+    resize:none;
+  }
+  .buttons {
+    position:fixed;
+    top:10px;
+    right:10px;
+    display:flex;
+    gap:10px;
+    z-index:10;
+  }
+  button {
+    padding:6px 12px;
+    font-size:0.9em;
+    cursor:pointer;
+    border:none;
+    background:#333;
+    color:#fff;
+    border-radius:4px;
+  }
+  button:hover {
+    background:#555;
+  }
+  pre {
+    white-space:pre-wrap;
+    word-wrap:break-word;
+    margin:0;
+  }
+  @media print {
+    body { background:#fff; margin:0; }
+    .left, .right { box-shadow:none; padding:10px; }
+    .buttons { display:none; }
+  }
+</style>
+</head>
+<body>
+<div class='buttons'>
+  <button onclick='window.print()'>印刷</button>
+  <button onclick='window.location.href="resume.xlsx"'>Excel</button>
+  <button onclick="document.getElementById('fileInput').click()">写真選択</button>
+</div>
+
+<div class='container'>
+  <div class='left'>
+    <div class='photo-container' id='photoBox'>
+      <img id='photo' src='photo.png' alt='写真'>
+      <div class='photo-overlay'>ここに画像をドラッグ</div>
+    </div>
+    <input type='file' id='fileInput' accept='image/*' style='display:none'>
+
+    <h1>野口 慧</h1>
+    <p>1984年7月10日生・男性</p>
+    <p>最寄駅：八王子丹木町1-144-12</p>
+    <p>得意言語：GAS</p>
+    <p>得意分野：アパレル・小売業界の自動化</p>
+    <h2>自己PR</h2>
+    <textarea readonly>
+全国17店舗を展開するアパレル事業において、過剰在庫と高原価構造による粗利圧迫を解消するため、仕組み設計から実装・全社展開まで一貫して推進しました。
+現場課題抽出、施策提案、代表との予算調整、プロトタイプ開発、運用定着まで実務で回し、短期で収益構造の改善を達成しています。
+    </textarea>
+    <h2>強み・アピール</h2>
+    <textarea readonly>
+- 商流改革力：独自の仕入れルートを開拓し原価構造を改善
+- 技術実装力：GAS/Pythonでプロトタイプを自走し本番化
+- 財務管理力：PL/BSを意識した予実管理・予算シミュレーション作成
+- 推進力：現場・技術・経営を繋ぎ短期間で成果を出すPMO能力
+- 少人数体制での全社改善再現力
+    </textarea>
+  </div>
+
+  <div class='right'>
+    <h2>職務経歴</h2>
+    <pre>
+
+直近フリーランス活動：
+- 株式会社東京白ゆり会：物流設計・販売管理支援
+- 株式会社アークリード：在庫処理・物流業務委託導入
+- 株式会社宮入・株式会社ファッションメッセージ：全国規模の仕入れルート開拓【2024年9月-2025年7月】業務企画・運営支援（11ヶ月）
+- 
+【2023年11月-2025年7月】個別プロジェクト対応（22ヶ月）フリーランス
+- ITツールによる業務効率化支援
+- 経営企画支援　株式会社アークリード倉庫業務委託スキームPM
+- 業務改善プロジェクト推進
+  物流業務代行体制設計・導入支援
+- 原価削減イベント企画・実行
+- 商品管理・販売データ集計の自動化
+- クライアント折衝・関係者調整
+
+【2020年4月-2023年9月】倉庫DX化PM　リテール営業担当（29ヶ月）株式会社東京白ゆり会（東京白ゆり會解散後M＆A）
+- 店舗物流管理・フォーマット自動化
+- SATOとの連携・指示書作成　商品コントロール
+- PL作成、代表への報告
+
+【2018年12月-2020年3月】店舗管理・リテール営業（28ヶ月）株式会社東京白ゆり會
+- 店舗運営、売上管理
+- 生産管理　商品コントロール
+- 棚卸し・在庫管理
+    </pre>
+  </div>
+</div>
+
+<script>
+const photoBox = document.getElementById('photoBox');
+const photo = document.getElementById('photo');
+const fileInput = document.getElementById('fileInput');
+
+// --- 1️⃣ ページ読み込み時にlocalStorageから画像を復元 ---
+const savedPhoto = localStorage.getItem('resumePhoto');
+if (savedPhoto) {
+  photo.src = savedPhoto;
+}
+
+// --- 2️⃣ ファイルを選択 or ドラッグで画像読み込み＆保存 ---
+function loadPhoto(file) {
+  if (!file || !file.type.startsWith('image/')) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const dataUrl = e.target.result;
+    photo.src = dataUrl;
+    localStorage.setItem('resumePhoto', dataUrl); // ← 保存！
+  };
+  reader.readAsDataURL(file);
+}
+
+// ドラッグ&ドロップ対応
+photoBox.addEventListener('dragover', e => {
+  e.preventDefault();
+  photoBox.style.border = '2px dashed #666';
+});
+photoBox.addEventListener('dragleave', e => {
+  e.preventDefault();
+  photoBox.style.border = 'none';
+});
+photoBox.addEventListener('drop', e => {
+  e.preventDefault();
+  loadPhoto(e.dataTransfer.files[0]);
+  photoBox.style.border = 'none';
+});
+
+// ファイル選択対応
+fileInput.addEventListener('change', e => {
+  loadPhoto(e.target.files[0]);
+});
+</script>
+</body>
+</html>
